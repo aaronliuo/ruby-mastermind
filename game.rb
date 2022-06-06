@@ -14,7 +14,7 @@ class MastermindGame
     end
 
     def check_guess(guess)
-        puts @valid_code
+        # puts @valid_code
         guess_used = Array.new(4, 0)
         code_used = Array.new(4, 0)
         result = ""
@@ -49,7 +49,7 @@ class MastermindGame
         elsif @turns >= @@MAX_TURNS
             puts "#{guesser} has failed to crack the Code..."
         else
-            puts result
+            puts "Guess Result: #{result}\n\n"
         end
     end
 end

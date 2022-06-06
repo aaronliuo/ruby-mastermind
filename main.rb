@@ -3,7 +3,7 @@ require_relative './player.rb'
 require_relative './computer.rb'
 
 
-def guesser()
+def maker()
     player = Player.new()
     computer = Computer.new()
     game = MastermindGame.new()
@@ -18,19 +18,25 @@ def guesser()
 
 end
 
-def breaker()
+def guesser()
     player = Player.new()
     computer = Computer.new()
     game = MastermindGame.new()
     game.valid_code = computer.generate_code()
     while game.turns < MastermindGame.MAX_TURNS do
         puts "Turn #{game.turns+1}"
-        game.print_result(game.check_guess(player.input_code()), "Player")
+        game.print_result(game.check_guess(player.input_code()), "The player")
     end
 end
 
 def run_game()
     puts "Welcome to Mastermind."
+    puts "This is a game where a player has to correctly guess a 4-digit code that another player has set!
+The digits are from a range of 6 numbers (1-6 inclusive). After each guess, the guesser gets to
+recieve some hints in a form of a string of numbers. You will be playing against a computer.\n\n"
+    puts "Hints"
+    puts "0: Represents that one number is not in its correct position but it exists."
+    puts "1: Represents that one number is in its correct position."
     while true do
         puts "Press 'y' to play and 'n' to quit."
         can_play = gets.chomp
@@ -44,18 +50,18 @@ def run_game()
             break
         end
 
-        print "Press 1 to be the Guesser or Press 2 to be the Breaker: "
+        print "Press 1 to be the Code Maker or Press 2 to be the Guesser: "
         response = gets.chomp
         until response.match?(/^1$|^2$/) do
             puts "Invalid input"
-            print "Press 1 to be the Guesser or Press 2 to be the Breaker: "
+            print "Press 1 to be the Code Maker or Press 2 to be the Guesser: "
             response = gets.chomp
         end 
 
         if response == '1'
-            guesser()
+            maker()
         else
-            breaker()
+            guesser()
         end
     end
 end
